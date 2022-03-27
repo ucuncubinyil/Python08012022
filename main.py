@@ -1,27 +1,39 @@
-from tkinter import *
-from tkinter import  messagebox
+# python -m pip install -U matplotlib
+# Eğer kütüphane yoksa yükle
 
-window = Tk()
+from matplotlib import pyplot as plt
 
-window.title("Python Kursu")
-window.geometry("500x600")
-
-uygulama = Frame(window)
-uygulama.grid()
-
-def dialog():
-    var = messagebox.showinfo("Uyarı", "Merhaba ben sadece bilgilendirme amaçlı oluşturuldum")
+x_ekseni = [1, 2, 3, 4, 5]
+y_ekseni_ayse = [50, 80, 90, 100, 110]
+y_ekseni_ali = [40, 60, 100, 105, 130]
+y_ekseni_arzu = [55, 70, 110, 115, 150]
 
 
-def dialog2():
-    var = messagebox.askyesno("Uyarı", "Merhaba ben sadece bilgilendirme amaçlı oluşturuldum")
+
+plt.plot(x_ekseni, y_ekseni_ayse, color='r', linestyle="dotted", marker="v", label="Ayşe")
+plt.plot(x_ekseni,y_ekseni_ali,'k-o', label="Ali")
+plt.plot(x_ekseni,y_ekseni_arzu, label="Arzu", color="#3366ff", marker="8", linestyle="dashdot")
+
+#  are '-', '--', '-.', ':', 'None', ' ', '', 'solid', 'dashed', 'dashdot', 'dotted'
 
 
-button1 = Button(uygulama, text=" uyarı  ", width=50, height=30, command=dialog)
-button1.grid(padx=110, pady=80)
+# plt.plot(x_ekseni, y_ekseni_ayse, label="Ayşe")
+# plt.plot(x_ekseni,y_ekseni_ali, label="Ali")
+# plt.plot(x_ekseni,y_ekseni_arzu, label="Arzu")
 
-button2 = Button(uygulama, text=" hata ", width=50, height=30, command=dialog2)
-button2.grid(padx=10, pady=60)
+plt.legend()
+plt.tight_layout()
 
-window.mainloop()
+plt.savefig("cizim.png")
+plt.grid(True)
 
+plt.xkcd()
+plt.style.use('grayscale')
+
+plt.title("Yaş-Boy Tablosu")
+plt.xlabel("Yaşlar")
+plt.ylabel("Boy Uzunlukları(cm)")
+plt.show()
+
+
+print(plt.style.available)
